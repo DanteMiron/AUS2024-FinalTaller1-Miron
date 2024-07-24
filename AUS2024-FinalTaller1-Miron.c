@@ -18,7 +18,7 @@ int main ()
 {
 
     int puntajeJugadorUno[TURNOS][2]= {0,0};
-    char jugadorUno [300];
+    char jugadorUno [15];
 
     printf("\t\t\t\t\t  GENERALA\n\n");
 
@@ -35,14 +35,14 @@ int main ()
         for(int i = 0; i <TURNOS; i++)
         {
             printf("\t\t\t\t\t  ---------------------\n");
-            printf("\n\n\t\t\t\t\t%s es tu TURNO nro: %d\n\n", jugadorUno, i+1);
+            printf("\n\t\t\t\t\t%s es tu TURNO nro: %d\n", jugadorUno, i+1);
             turno(puntajeJugadorUno);
             mostrar_puntaje(puntajeJugadorUno,jugadorUno);
         }
     }
     else
     {
-        char jugadorDos [300];
+        char jugadorDos [15];
         int puntajeJugadorDos[TURNOS][2]= {0,0};
 
         fflush(stdin);
@@ -63,27 +63,27 @@ int main ()
         for(int i = 0; i < TURNOS; i++)
         {
                 printf("\t\t\t\t\t  ---------------------\n");
-                printf("\n\n%s es tu TURNO nro: %d\n\n", jugadorUno, i+1);
+                printf("\n\t\t\t\t\t%s es tu TURNO nro: %d\n", jugadorUno, i+1);
                 turno(puntajeJugadorUno);
                 mostrar_puntaje_dos(puntajeJugadorUno,puntajeJugadorDos,jugadorUno,jugadorDos);
 
                 printf("\t\t\t\t\t  ---------------------\n");
-                printf("\n\n%s es tu TURNO nro: %d\n\n", jugadorDos, i+1);
+                printf("\n\t\t\t\t\t%s es tu TURNO nro: %d\n", jugadorDos, i+1);
                 turno(puntajeJugadorDos);
                 ganador = mostrar_puntaje_dos(puntajeJugadorUno,puntajeJugadorDos,jugadorUno,jugadorDos);
         }
 
         if(ganador==0){
-            printf("\n\n\n\t\t\t %s EERES EL GANADOR, FELICIDADES", jugadorUno);
+            printf("\n\n\n\t\t\t %s ERES EL GANADOR, FELICIDADES !!!", jugadorUno);
         } else if(ganador==1)
         {
-            printf("\n\n\n\t\t\t %s EERES EL GANADOR, FELICIDADES", jugadorDos);
+            printf("\n\n\n\t\t\t %s ERES EL GANADOR, FELICIDADES !!!", jugadorDos);
         } else
         {
-            printf("\n\n\n\t\t\t EMPATEEEEEE");
+            printf("\n\n\n\t\t\t %s y %s HAN EMPATADO !!!", jugadorUno, jugadorDos);
         }
     }
-
+    return 0;
 }
 
 int cantidad_jugadores(){
@@ -103,7 +103,7 @@ int cantidad_jugadores(){
 void lanzamiento_dados(int dados[], int nroDados)
 {
     srand(time(NULL));
-    printf("\nLANZAMIENTO: ");
+    printf("\n\nLANZAMIENTO: ");
     for(int i = 0; i < nroDados; i++)
     {
         dados[i]=rand()%6+1;
@@ -143,6 +143,7 @@ void mostrar_dados_elegidos(int dadosElejidos[], int nroDadosElejidos)
         printf(" %d\t", dadosElejidos[i]);
     }
     printf("\n");
+    return;
 }
 
 void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
@@ -212,7 +213,7 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
 
 
     printf("\n\n\n");
-    printf("Elija las siguientes opciones para anotar sus puntos: \n\n");
+    printf("Elija las siguientes opciones para anotar sus puntos: \n");
 
     int number = 0;
     int num ;
@@ -224,7 +225,7 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
             {
                 number++;
                 a[i][0]=number;
-                printf("\n %d) Anotarse: %d al %d  \n", a[i][0], a[i][1], i+1);
+                printf("\n %d) Anotarse: %d al %d  ", a[i][0], a[i][1], i+1);
 
             }
             switch(i)
@@ -234,13 +235,13 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Anotarse: escalera\n", a[i][0]);
+                    printf("\n %d) Anotarse: escalera", a[i][0]);
 
                 } else
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Tacharse: escalera\n", a[i][0]);
+                    printf("\n %d) Tacharse: escalera", a[i][0]);
 
                 }
             break;
@@ -249,12 +250,12 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Anotarse: full\n", a[i][0]);
+                    printf("\n %d) Anotarse: full", a[i][0]);
                 } else
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Tacharse: full\n", a[i][0]);
+                    printf("\n %d) Tacharse: full", a[i][0]);
                 }
                 break;
             case 8:
@@ -262,12 +263,12 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Anotarse: poker\n", a[i][0]);
+                    printf("\n %d) Anotarse: poker", a[i][0]);
                 } else
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Tacharse: poker\n", a[i][0]);
+                    printf("\n %d) Tacharse: poker", a[i][0]);
                 }
                 break;
             case 9:
@@ -275,12 +276,12 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Anotarse: generala\n", a[i][0]);
+                    printf("\n %d) Anotarse: generala", a[i][0]);
                 } else
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Tacharse: generala\n", a[i][0]);
+                    printf("\n %d) Tacharse: generala", a[i][0]);
                 }
                 break;
             case 10:
@@ -288,12 +289,12 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Anotarse: doble generala\n", a[i][0]);
+                    printf("\n %d) Anotarse: doble generala", a[i][0]);
                 } else
                 {
                     number++;
                     a[i][0]=number;
-                    printf("\n %d) Tacharse: doble generala\n", a[i][0]);
+                    printf("\n %d) Tacharse: doble generala", a[i][0]);
                 }
                 break;
             }
@@ -303,6 +304,11 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
 
     printf("\n\nElija la jugada deseada: \n>>");
     scanf("%d", &num);
+    while(num>number || num<1)
+    {
+        printf("La opcion seleccionada no es correcta, vuelva a hacerlo \n>>" );
+        scanf("%d", &num);
+    }
     for(int i =0; i<11; i++)
     {
       if(num==a[i][0])
@@ -312,7 +318,7 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
          break;
         }
     }
-
+    return;
 }
 
 void mostrar_puntaje(int puntajeJugador[][2], char nombre[])
@@ -359,6 +365,7 @@ void mostrar_puntaje(int puntajeJugador[][2], char nombre[])
     }
     printf("\n");
     printf("Puntuacion\t\t%d\n\n", sum);
+    return;
 }
 
 int mostrar_puntaje_dos(int puntajeJugadorUno[][2],int puntajeJugadorDos[][2], char nombreUno[], char nombreDos[] )
@@ -468,5 +475,6 @@ void turno(int puntajeJugadorUno[][2])
         }
 
     mostrar_opciones_de_puntaje(dadosElegidosJugadorUno, puntajeJugadorUno);
+    return;
 }
 
