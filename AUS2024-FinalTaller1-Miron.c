@@ -9,15 +9,15 @@ void  lanzamiento_dados(int [], int);
 void  mostrar_dados_elegidos(int [], int);
 void  mostrar_opciones_de_puntaje(int [], int [][2]);
 void  mostrar_puntaje( int[][2], char[]);
-int  mostrar_puntaje_dos( int[][2], int[][2], char[], char[]);
 void  turno(int puntajeJugadorUno[][2]);
+int  mostrar_puntaje_dos( int[][2], int[][2], char[], char[]);
 int  cantidad_jugadores();
 int  elegir_dados(int [], int [], int, int);
 
 int main ()
 {
 
-    int puntajeJugadorUno[11][2]= {0,0};
+    int puntajeJugadorUno[TURNOS][2]= {0,0};
     char jugadorUno [300];
 
     printf("\t\t\t\t\t  GENERALA\n\n");
@@ -32,8 +32,9 @@ int main ()
 
         printf("\nJUGADOR 1: %s\n", jugadorUno);
 
-        for(int i = 0; i < TURNOS; i++)
+        for(int i = 0; i <TURNOS; i++)
         {
+            printf("\t\t\t\t\t  ---------------------\n");
             printf("\n\n\t\t\t\t\t%s es tu TURNO nro: %d\n\n", jugadorUno, i+1);
             turno(puntajeJugadorUno);
             mostrar_puntaje(puntajeJugadorUno,jugadorUno);
@@ -42,7 +43,7 @@ int main ()
     else
     {
         char jugadorDos [300];
-        int puntajeJugadorDos[11][2]= {0,0};
+        int puntajeJugadorDos[TURNOS][2]= {0,0};
 
         fflush(stdin);
         printf("\n---- Fue seleccionada la modalidad de dos jugadores ----\n");
@@ -61,13 +62,15 @@ int main ()
 
         for(int i = 0; i < TURNOS; i++)
         {
+                printf("\t\t\t\t\t  ---------------------\n");
                 printf("\n\n%s es tu TURNO nro: %d\n\n", jugadorUno, i+1);
                 turno(puntajeJugadorUno);
                 mostrar_puntaje_dos(puntajeJugadorUno,puntajeJugadorDos,jugadorUno,jugadorDos);
 
+                printf("\t\t\t\t\t  ---------------------\n");
                 printf("\n\n%s es tu TURNO nro: %d\n\n", jugadorDos, i+1);
                 turno(puntajeJugadorDos);
-                int ganador = mostrar_puntaje_dos(puntajeJugadorUno,puntajeJugadorDos,jugadorUno,jugadorDos);
+                ganador = mostrar_puntaje_dos(puntajeJugadorUno,puntajeJugadorDos,jugadorUno,jugadorDos);
         }
 
         if(ganador==0){
@@ -159,7 +162,7 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
 
     int aparece[N] ={0};
     int yaContado[N] ={0};
-    int a [11][2] = {0,0,0};
+    int a [TURNOS][2] = {0,0,0};
 
     for(int i = 0; i < N; i++)
     {
@@ -314,7 +317,7 @@ void mostrar_opciones_de_puntaje(int jugada[], int puntajeJugador[][2])
 
 void mostrar_puntaje(int puntajeJugador[][2], char nombre[])
 {
-    printf("CATEGORIAS\t\t%s\n", nombre);
+    printf("\n\nCATEGORIAS\t\t%s", nombre);
     int sum = 0;
     for(int i = 0; i<11; i++)
     {
@@ -355,14 +358,14 @@ void mostrar_puntaje(int puntajeJugador[][2], char nombre[])
         }
     }
     printf("\n");
-    printf("Puntuacion\t\t%d", sum);
+    printf("Puntuacion\t\t%d\n\n", sum);
 }
 
 int mostrar_puntaje_dos(int puntajeJugadorUno[][2],int puntajeJugadorDos[][2], char nombreUno[], char nombreDos[] )
 {
     int sum1 = 0, sum2 = 0;
-    printf("CATEGORIAS\t\t%s\t\t%s\n", nombreUno, nombreDos);
-    for(int i = 0; i<11; i++)
+    printf("\n\nCATEGORIAS\t\t%s\t\t%s", nombreUno, nombreDos);
+    for(int i = 0; i<TURNOS; i++)
     {
         printf("\n");
 
@@ -416,7 +419,9 @@ int mostrar_puntaje_dos(int puntajeJugadorUno[][2],int puntajeJugadorDos[][2], c
 
     }
     printf("\n");
-    printf("Puntuacion\t\t%d\t\t%d", sum1, sum2);
+    printf("Puntuacion\t\t%d\t\t%d\n\n", sum1, sum2);
+
+
 
 
     if(sum1>sum2)
